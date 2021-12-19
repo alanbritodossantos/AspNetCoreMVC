@@ -18,7 +18,7 @@ namespace Alura.ListaLeitura.App
 
         public void Configure(IApplicationBuilder app)
         {
-            var builder = new RouteBuilder(app);//classe responsavel por construir rotas
+            var builder = new RouteBuilder(app);//classe responsavel por construir rotas 
             builder.MapRoute("Livros/ParaLer", LivrosParaLer);
             builder.MapRoute("Livros/Lendo", LivrosLendo);
             builder.MapRoute("Livros/Lidos", LivrosLidos);
