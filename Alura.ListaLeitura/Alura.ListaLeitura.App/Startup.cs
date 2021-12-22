@@ -27,10 +27,25 @@ namespace Alura.ListaLeitura.App
             builder.MapRoute("Livros/Lidos", LivrosLidos);
             builder.MapRoute("Cadastro/NovoLivro/{nome}/{autor}", NovoLivroParaLer);
             builder.MapRoute("Livros/Detalhes/{id:int}", ExibeDetalhes);//foi adicionado "int" que signigica que só passa valores inteiross
+            builder.MapRoute("Cadastro/NovoLivro", ExibeFormulario);
             var rotas = builder.Build();// esse é o cara que pega as informações acima e constroi de fato a rota
 
             app.UseRouter(rotas);//usando o metodo do aspnet core 
             //app.Run(Roteamento); // usando o metodo do dicionario
+        }
+
+        private Task ExibeFormulario(HttpContext context)
+        {
+            //O sinal "@" permite escrever mais de uma linha
+            var html = @"
+                    <html>
+                        <form>
+                            <input/>
+                            <input/>
+                            <button>Gravar</button>
+                        </form>
+                    </html>";
+            return context.Response.WriteAsync(html);
         }
 
         private Task ExibeDetalhes(HttpContext context)
