@@ -40,8 +40,8 @@ namespace Alura.ListaLeitura.App
         {
             var livro = new Livro()
             {
-                Titulo = context.Request.Query["titulo"].First(),//pega o primeiro valor que estiver no link
-                Autor = context.Request.Query["autor"].First(),
+                Titulo = context.Request.Form["titulo"].First(),//o "form" pega os valores do formulario por causa que a verbalização mudo para "post" 
+                Autor = context.Request.Form["autor"].First(),
             };
             var repo = new LivroRepositorioCSV();
             repo.Incluir(livro);
