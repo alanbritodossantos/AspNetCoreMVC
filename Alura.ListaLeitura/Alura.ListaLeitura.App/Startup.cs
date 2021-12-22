@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Alura.ListaLeitura.App
@@ -25,10 +26,19 @@ namespace Alura.ListaLeitura.App
             builder.MapRoute("Livros/Lendo", LivrosLendo);
             builder.MapRoute("Livros/Lidos", LivrosLidos);
             builder.MapRoute("Cadastro/NovoLivro/{nome}/{autor}", NovoLivroParaLer);
+            builder.MapRoute("Livros/Detalhes/{id:int}", ExibeDetalhes);//foi adicionado "int" que signigica que só passa valores inteiross
             var rotas = builder.Build();// esse é o cara que pega as informações acima e constroi de fato a rota
 
             app.UseRouter(rotas);//usando o metodo do aspnet core 
             //app.Run(Roteamento); // usando o metodo do dicionario
+        }
+
+        private Task ExibeDetalhes(HttpContext context)
+        {
+            int id = Convert.ToInt32(context.GetRouteValue("id"));
+            var repo = new LivroRepositorioCSV(); // <<<<objeto que representa um repositorio
+            var livro = repo.Todos.First(l => l.Id == id);
+            return context.Response.WriteAsync(livro.Detalhes());
         }
 
         public Task NovoLivroParaLer(HttpContext context)
@@ -40,7 +50,7 @@ namespace Alura.ListaLeitura.App
             };
             var repo = new LivroRepositorioCSV();
             repo.Incluir(livro);
-            return context.Response.WriteAsync("O livro foi adicionado com sucesso");
+            return context.Response.WriteAsync("O livro foi  adicionado com sucesso");
         }
 
         public Task Roteamento(HttpContext context)
