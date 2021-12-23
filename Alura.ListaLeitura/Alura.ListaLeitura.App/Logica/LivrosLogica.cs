@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace Alura.ListaLeitura.App.Logica
 {
     //nessa classe tem metodos responsaveis pela exibição de livros
-    public class LivrosLogica
+    public class LivrosController
     {
 
         private static string CarregaLista(IEnumerable<Livro> livros)
@@ -56,9 +56,9 @@ namespace Alura.ListaLeitura.App.Logica
             return context.Response.WriteAsync(livro.Detalhes());
         }
 
-        public static Task Teste(HttpContext context)
+        public string Teste()
         {
-            return context.Response.WriteAsync("nova funcionalidade foi implementada!");
+            return "nova funcionalidade foi implementada!";
         }
     }
 }
