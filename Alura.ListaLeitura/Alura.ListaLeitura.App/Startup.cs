@@ -1,15 +1,8 @@
 ﻿using Alura.ListaLeitura.App.Logica;
-using Alura.ListaLeitura.App.Negocio;
-using Alura.ListaLeitura.App.Repositorio;
+using Alura.ListaLeitura.App.Mvc;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Alura.ListaLeitura.App
 {
@@ -26,13 +19,14 @@ namespace Alura.ListaLeitura.App
         public void Configure(IApplicationBuilder app)
         {
             var builder = new RouteBuilder(app);//classe responsavel por construir rotas 
-            builder.MapRoute("Livros/ParaLer", LivrosLogica.LivrosParaLer);
-            builder.MapRoute("Livros/Lendo", LivrosLogica.LivrosLendo);
-            builder.MapRoute("Livros/Lidos", LivrosLogica.LivrosLidos);
-            builder.MapRoute("Livros/Detalhes/{id:int}", LivrosLogica.ExibeDetalhes);//foi adicionado "int" que signigica que só passa valores inteiross
-            builder.MapRoute("Cadastro/NovoLivro/{nome}/{autor}", CadastroLogica.NovoLivroParaLer);
-            builder.MapRoute("Cadastro/NovoLivro", CadastroLogica.ExibeFormulario);
-            builder.MapRoute("Cadastro/Incluir", CadastroLogica.ProcessaFormulario);
+            builder.MapRoute("{classe}/{metodo}", RoteamentoPadrao.TratamentoPadrao);
+            //builder.MapRoute("Livros/ParaLer", LivrosLogica.ParaLer);
+            //builder.MapRoute("Livros/Lendo", LivrosLogica.Lendo);
+            //builder.MapRoute("Livros/Lidos", LivrosLogica.Lidos);
+            //builder.MapRoute("Livros/Detalhes/{id:int}", LivrosLogica.Detalhes);//foi adicionado "int" que signigica que só passa valores inteiross
+            //builder.MapRoute("Cadastro/NovoLivro/{nome}/{autor}", CadastroLogica.NovoLivro);
+            //builder.MapRoute("Cadastro/ExibeFormulario", CadastroLogica.ExibeFormulario);
+            //builder.MapRoute("Cadastro/Incluir", CadastroLogica.Incluir);
             var rotas = builder.Build();// esse é o cara que pega as informações acima e constroi de fato a rota
 
             app.UseRouter(rotas);//usando o metodo do aspnet core 
