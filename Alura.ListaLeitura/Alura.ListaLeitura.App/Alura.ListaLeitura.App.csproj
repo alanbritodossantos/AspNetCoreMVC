@@ -1,8 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
     <ApplicationIcon />
     <StartupObject />
   </PropertyGroup>
@@ -13,10 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="HTML\formulario.html">
+    <None Update="Views\Cadastro\formulario.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="HTML\para-ler.html">
+    <None Update="Views\para-ler.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Repositorio\livros.csv">

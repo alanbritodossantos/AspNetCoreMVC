@@ -15,6 +15,7 @@ namespace Alura.ListaLeitura.App
         //mapeando rotas para suas logicas especificas 
         public void Configure(IApplicationBuilder app)
         {
+            app.UseDeveloperExceptionPage();//mostra o erro no navegador(capturar exceções sem tratamento lançadas)
             app.UseMvcWithDefaultRoute();//usando o mvc como roteamento padrão
         }
     }

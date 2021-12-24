@@ -2,6 +2,7 @@
 using Alura.ListaLeitura.App.Negocio;
 using Alura.ListaLeitura.App.Repositorio;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,11 +25,12 @@ namespace Alura.ListaLeitura.App.Logica
             return conteudoArquivo.Replace("#NOVO-ITEM#", "");//depois que terminar de listar, onde estiver "#NOVO-ITEM#" coloque como vazio
         }
 
-        public static Task ParaLer(HttpContext context)
+        public IActionResult ParaLer()
         {
             var _repo = new LivroRepositorioCSV();
-            var html = CarregaLista(_repo.ParaLer.Livros);
-            return context.Response.WriteAsync(html);
+            //var html = CarregaLista(_repo.ParaLer.Livros);
+            var html = new ViewResult { ViewName = "lista" };
+            return (html);
         }
 
         public static Task Lendo(HttpContext context)

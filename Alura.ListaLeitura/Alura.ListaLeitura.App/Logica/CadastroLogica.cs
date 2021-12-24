@@ -21,7 +21,7 @@ namespace Alura.ListaLeitura.App.Logica
         {
             //O sinal "@" permite escrever mais de uma linha
             //var html = HtmlUtils.CarregaArquivoHTML("formulario");
-            var html = new ViewResult { ViewName = "formulario.html" };// viewResult representa o resultado HTML
+            var html = new ViewResult { ViewName = "formulario" };// viewResult representa o resultado HTML
             return html;
         }
 
