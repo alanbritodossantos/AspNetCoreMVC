@@ -10,39 +10,36 @@ using System.Threading.Tasks;
 namespace Alura.ListaLeitura.App.Logica
 {
     //nessa classe tem metodos responsaveis pela exibição de livros
-    public class LivrosController
+    public class LivrosController: Controller
     {
+        public IEnumerable<Livro> Livros { get; set; }
 
         private static string CarregaLista(IEnumerable<Livro> livros)
         {
             var _repo = new LivroRepositorioCSV();
             var conteudoArquivo = HtmlUtils.CarregaArquivoHTML("lista");
-
-            foreach (var livro in livros)//listando os livros
-            {
-                conteudoArquivo = conteudoArquivo.Replace("#NOVO-ITEM#", $"<li>{livro.Titulo} - {livro.Autor} </li>#NOVO-ITEM#");
-            }
             return conteudoArquivo.Replace("#NOVO-ITEM#", "");//depois que terminar de listar, onde estiver "#NOVO-ITEM#" coloque como vazio
         }
 
         public IActionResult ParaLer()
         {
             var _repo = new LivroRepositorioCSV();
-            //var html = CarregaLista(_repo.ParaLer.Livros);
-            var html = new ViewResult { ViewName = "lista" };
-            return (html);
+            ViewBag.Livros = _repo.ParaLer.Livros;
+            return View("lista");
         }
 
-        public static Task Lendo(HttpContext context)
+        public IActionResult Lendo()
         {
             var _repo = new LivroRepositorioCSV();
-            return context.Response.WriteAsync(_repo.Lendo.ToString());
+            ViewBag.Livros = _repo.Lendo.Livros;
+            return View("lista");
         }
 
-        public static Task Lidos(HttpContext context)
+        public IActionResult Lido()
         {
             var _repo = new LivroRepositorioCSV();
-            return context.Response.WriteAsync(_repo.Lidos.ToString());
+            ViewBag.Livros = _repo.Lidos.Livros;
+            return View("lista");
         }
 
         public string Detalhes(int id)

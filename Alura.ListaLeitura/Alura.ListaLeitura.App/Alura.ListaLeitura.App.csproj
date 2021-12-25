@@ -17,10 +17,10 @@
     <None Update="Views\Cadastro\formulario.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Views\para-ler.html">
+    <None Update="Repositorio\livros.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Repositorio\livros.csv">
+    <None Update="Views\Livros\lista.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
